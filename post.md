@@ -1,4 +1,4 @@
-# Lab X: Doing stuff with hardware!
+# Lab 3: Combinational Ramp Circuit Design
 
 Please write a blog post describing your lab here.
 
