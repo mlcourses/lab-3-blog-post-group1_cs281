@@ -57,7 +57,7 @@ Now that we have our minimal SOP expression, we can test out our circuit in Logi
 
 <img width="229" alt="image" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/119cc028-926e-449e-9b7e-276fd23b69d5">
 
-The pins, from top to bottom, from left to right, are: G, F, A, B, E, D, C, and decimal point (unused).  Here is our complete circuit, with our 3 bit input:
+The pins, from left to right, are: G, F, A, B (top 4 pins), E, D, C, and decimal point (unused) (bottom 4 pins).  Here is our complete circuit, with our 3 input bits:
 
 <img width="1157" alt="7 segment logisim" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/612ce4f4-c049-4b08-818d-4da69aeb5828">
 
