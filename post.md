@@ -1,17 +1,21 @@
 # Lab 3: Combinational Ramp Circuit Design
 
-Please write a blog post describing your lab here.
-
-This is just an example of how you might structure your blog post, feel free to edit as you wish. For example, you might divide the lab into different sections each with their own intro, instructions, results, and takeaways. Please see the rubric for details on how the post will be evaluated.
-
 ## Overview and Motivation
-This week we'll be using an analog input to display a number on a 7-segment display.
+
+This week, our lab will involve both an analog and a digital component. We will be introduced to a way to get analog input, the potentiometer, and then we will use it, along with our Arduino, to light up a 7-segment display. By the end of this lab, we should be familiar with the voltage divider, the concept of a ramp circuit, and be comfortable with more complex combinational circuit.
+
+Activities:
+1. Get to know the voltage divider (potentiometer)
+2. Use the Arduino to convert the potentiometer's analog signal into a 3-bit digital signal that represent the numbers 0 to 5 in binary.
+3. Build a combinational circuit that, when given the 3-bit signal from the Arduino, display the numbers 0 to 5 on a 7-segment LED display.
+
 ## Materials
 1)PB-503 Breadboard
 2)5161AS 7-Segment Display
 3)Arduino
 4)7404,7408 and 7432 IC Gates
 5)Resistors
+
 ## Project Steps
 1) Fill in the truth table in Figure 4 to indicate the outputs for each LED segment in the 7-segment display.
 2) Use the truth table in Figure 4 to make an SOP expression for each output.
@@ -21,23 +25,33 @@ for each output.
 5) Understand Voltage Divider
 6) Build Circuit
 
-## Truth Tables
+## The 7-segment display
 
-To build this circuit we first have to start with some preparation. This includes building a truth table to create SOP expression for each output. This is important for the design of the circuit. The digital signal representing a decimal value from 0 to 5, and controls the illumination of LEDs based on this value. The goal is to create a truth table that specifies the behavior of the circuit for all possible input combinations.
+Before we start diving into the lab, we need to explain what a 7-segment display is and how it works. If you have ever taken a look at a number on your LCD alarm clock or on the pedestrian crossing timer, you will notice that the numbers are created using 7 light segments, hence the name "7-segment display". Our 7-segment display consists of 7 individually controlled LEDs (8 if you count the decimal point, but we will not be using it in this lab), labelled as follow:
 
-...
+<img width="279" alt="image" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/e29434cf-9af9-4234-b2d6-d55d4e02f269">
 
+So when, for example, we want number 2 to light up, we would want the LEDs A, B, D, E and G to light up, but not C and F. For this lab, our goal is to be able to display the numbers 0 to 5, and the combination of LED segments for each number is as follow:
 
+<img width="353" alt="image" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/109006e0-5c37-4228-a289-d90c110d24b8">
 
-After filling in the truth table and creating SOP expressions, we will used the same tables to make K-maps for each output. K-Maps allow us to simplify the SOP expressions to minimize the amount of ICs we use and to create easier circuits overall.
+Out input will be a 3-bit numer that will represent the numbers 0 to 5 in binary (000, 001, 010 and so on). So now, our challenge is to take these 3 bits, and make them light up the corresponding combination of LEDs for each value. To accomplish this task, we will use a truth table.
 
+## Truth Table
 
+Let B<sub>2</sub>, B<sub>1</sub> and B<sub>0</sub> be our 3-bit number, with B<sub>2</sub> being the most significant bit. The truth table for our each of our LED segment is as followed, labelled like the figure above:
 
-...
+<img width="1273" alt="image" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/6bc27631-0fb6-4b0b-bc7f-3b43216d8aad">
 
+After filling in the truth table, we can create an SOP expression for each LED. However, with 3 inputs and 6 numerical values, our expressions will be bulky. Hence, we will utilize some k-maps to simplify our SOP expressions. This step will make sure that our circuit will be as simple as possible and use as few IC chips as possible. Here are the SOP expressions for each LED after k-mapping:
 
+<img width="1051" alt="image" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/c6dbed77-0b27-458c-b0ec-a07357e7a625">
 
-Now we are able to visualize the circuit we are going to make with the help of the K-Maps
+<img width="589" alt="image" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/9e213565-09c7-4488-ad91-95ed2ef4e8e9">
+
+<img width="988" alt="image" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/ce05cf86-0041-4ea6-ba53-90b99b344def">
+
+## Logisim circuit
 
 
 
