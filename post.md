@@ -51,17 +51,21 @@ After filling in the truth table, we can create an SOP expression for each LED. 
 
 <img width="988" alt="image" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/ce05cf86-0041-4ea6-ba53-90b99b344def">
 
-## Logisim circuit
+## Logisim circuit and wiring diagram
 
+Now that we have our minimal SOP expression, we can test out our circuit in Logisim before building it on the breadboard. The only difference is that the Logisim 7-segment display has 8 pins, while in real life it has 10, including 2 ground middle pins. We will keep that in mind when we build our circuit, but for now, the display in Logisim looks like this:
 
+<img width="229" alt="image" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/119cc028-926e-449e-9b7e-276fd23b69d5">
 
+The pins, from top to bottom, from left to right, are: G, F, A, B, E, D, C, and decimal point (unused).  Here is our complete circuit, with our 3 bit input:
 
-...
+<img width="1157" alt="7 segment logisim" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/612ce4f4-c049-4b08-818d-4da69aeb5828">
 
+Note that among the OR gates, the 4th one from the top down is a 3-input OR gate. When we build the circuit on the breadboard, we will use 2 OR gates instead, since we don't have a 3-input OR gate. This brings the total of OR gates we will need to 6, which means we will have to use two 7432 IC chips (each only has 4 OR gates). The remaining 3 NOT gates and 3 AND gates will be implemented with a single 7404 and a 7408 IC chip. Here is the complete wiring diagram for our circuit, complete with wiring for power (WARNING: this one is a doozy, so wire carefully!)
 
+![7 segment wiring](https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/66178b6c-f9e9-4091-881b-89bfb106019e)
 
-
-
+That is all the theoretical part! Let's move on to the next part.
 
 ## Voltage Divider
 
