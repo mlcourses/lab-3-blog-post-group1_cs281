@@ -107,6 +107,7 @@ digitalWrite(13,bitval); // signal C
 delay(WAIT);
 ```
 
+The ```potpin``` varible represents the analog input pin A0. The setup function has three pinMode function for pin 11,12 and 13 to set them as output pins to control LEDs or other digital devices. Also sets pin A0 as an input to read the analog value from the potentiometer. The loop function first defines variables ```val``` which is the anolog value from the potentiometer, ```dval``` which is the decimal value from the anolog value and ```bitval``` which is the binary representation of the decimal value.The extracted bits are then used to control three digital output pins, creating a binary representation of the original analog value.
 ## Testing
 
 ### Testing the potentiometer
