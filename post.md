@@ -67,26 +67,16 @@ Note that among the OR gates, the 4th one from the top down is a 3-input OR gate
 
 That is all the theoretical part! Let's move on to the next part.
 
-## Voltage Divider
+## Voltage Divider / Potentiometer
 
 Voltage Divider is an arragement of resistors configured to create a targer voltage. The equation to represent this is V = IR. V being voltage, I being the current, R being the resistance value of the resistor. A voltage divider consists of two resistors that are connected in series. The total resistance between these two is equal to R = R1 + R2 which is used to find the current I. Choosing our two resistance values allows us to pick any voltage V that we desire (between 0 and 5 volts).
 
-<img width="332" alt="Screenshot 2024-02-22 at 6 59 42 PM" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/112486168/d42cd174-9699-4b35-ad32-32a2e7aa356f">
+<img width="484" alt="image" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/78df6f85-1073-428d-999a-fc83f6f802a9">
 
+On our breadboard, the potentiometer is a voltage divider. A potentiometer is a varible resistor with an adjustable knob that lets us manually control the resistance. The breadboard we are using has both a 10k potentiometer and a 1k one (meaning the total sum of the resistance is 10kΩ and 1kΩ, respectively). For some reason, our 10k potentiometer was not functioning, so we will use the 1k potentiometer. While we will lose some granularity with our adjustment, ultimately our circuit will still be functional. We will wire the leftmost column of pin holes to GND, the rightmost column to +5V, and any of the 4 middle holes will be wired to our Arduino to take as input. The code below will be used to take the resistance from our potentiometer, convert it to a number from 0 to 5, then output that number through 3 digital pins as our 3 bit number:
 
-<img width="250" alt="Screenshot 2024-02-22 at 6 58 01 PM" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/112486168/7cafcdde-1e3d-48fd-9534-bab49570b87b">
-
-To do this we will use a potentiometer. A potentiometer is a varible resistor with an adjustable knob that lets us manually control the resistance. The breadboards we are using has both a 10k potentiometer and a 1k one meaning the total sum of the resistance is 10kΩ and 1kΩ. After connecting the leftmost column to GND, rightmost to 5V and using one of the middle columns to our arduino we are ready to build our circuit.
-
-
-We can now start putting everything together!
-
-<img width="452" alt="Screenshot 2024-02-22 at 7 01 41 PM" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/112486168/fda41730-862d-4892-8134-b559b6865d24">
-
-The photo above shows how we will connect all the parts of lab to generate the number on the 7-segment display. The code below is what we will put into the Arduino. We need to  connect V to the Arduino A0. The ```potpin``` varible represents the analog input pin A0. The setup function has three pinMode function for pin 11,12 and 13 to set them as output pins to control LEDs or other digital devices. Also sets pin A0 as an input to read the analog value from the potentiometer.
-
-
-```const int potpin = 0;
+```
+const int potpin = 0;
 const int WAIT = 1000; // 1 second delay
 void setup () {
 Serial.begin(9600);
@@ -100,26 +90,43 @@ int val;
 int dval;
 int bitval;
 val = analogRead(potpin);
-dval = val/171; // normalizing factor-->adjust this to get the range you want
+dval = (val-317)/117; // normalizing factor
 Serial.print("From Pot: ");
 Serial.println(val);
 Serial.print("Decimal Value Conversion: ");
 Serial.println(dval);
 //use bit ops to get each bit!
 bitval = dval & 1;
-digitalWrite(11,bitval); // signal C
+digitalWrite(11,bitval); // signal A
 dval = dval >> 1;
 bitval = dval & 1;
 digitalWrite(12,bitval); // signal B
 dval = dval >> 1;
 bitval = dval & 1;
-digitalWrite(13,bitval); // signal A
+digitalWrite(13,bitval); // signal C
 delay(WAIT);
 ```
+
 ## Testing
+
+### Testing the potentiometer
+
+Before we build our circuit, we need to test the potentiometer to make sure that our readings nad conversions are correct. If they are not, we will have to change the normalizing factor from above so that our Arduino can output numbers 0 to 5. The testing process and result is shown in this video:
+
+https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/3e2c8c99-3634-456e-b8ee-76d00dff53c8
+
+### Building the circuit
+
+Now that our potentiometer is calibrated, we are ready to build the circuit for our 7-segment display! We will be wiring exactly according to the wiring diagram above. one thing to add is that to protect the LEDs, we will wire a 1kΩ to each of the LED pin on our display. (Note: If you think the wiring diagram is a doozy, try looking at this one. If you intend to recreate this at home, follow the wiring diagram! One tip is to wire pin-by-pin, chip-by-chip and make sure that every connection from one pin is made before moving on to the next). Here is our assembled circuit:
+
+![IMG_4267](https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/743069e8-0185-4b6b-ab38-bae6c98ca31c)
+
+The IC chips on the first column are the 7404 (top) and 7408 (bottom). The chips on the second column are both 7432 chips. The analog pin A0 is wired to the potentiometer, and the digital pins 11, 12 and 13 are where the Arduino outputs our 3 bits to be used as input for our circuit. The Arduino is also wired to GND on the board, so that they share the same sense of ground. Let's see our circuit in action!
+
+https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/97915038/8dda6306-27a4-4830-8ca3-39c9bde91ff3
 
 ## Conclusion
 
-
+This lab has expanded our experience with combinational circuits by having us build a significantly more complex circuit compared to previous labs. We also got an introduction to the 7-segment display and the potentiometer, the latter being an implementation of the voltage divider. Due to the complexity of the lab, there was a significant amount of preparation involved, which helped us be more familiar with writing SOP expressions and using k-maps. Overall, this was a challenging but extremely interesting and helpful lab, and if you are interested in electronics or how computers work, you should definitely give it a go!
 
 
