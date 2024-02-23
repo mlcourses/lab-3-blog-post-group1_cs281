@@ -11,6 +11,9 @@ Activities:
 
 ## Materials
 1)PB-503 Breadboard
+
+
+
 2)5161AS 7-Segment Display
 3)Arduino
 4)7404,7408 and 7432 IC Gates
