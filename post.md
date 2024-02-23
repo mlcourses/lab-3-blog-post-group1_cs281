@@ -79,10 +79,12 @@ Voltage Divider is an arragement of resistors configured to create a targer volt
 To do this we will use a potentiometer. A potentiometer is a varible resistor with an adjustable knob that lets us manually control the resistance. The breadboards we are using has both a 10k potentiometer and a 1k one meaning the total sum of the resistance is 10kΩ and 1kΩ. After connecting the leftmost column to GND, rightmost to 5V and using one of the middle columns to our arduino we are ready to build our circuit.
 
 
+We can now start putting everything together!
 
-....
+<img width="452" alt="Screenshot 2024-02-22 at 7 01 41 PM" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/112486168/fda41730-862d-4892-8134-b559b6865d24">
 
 The photo above shows how we will connect all the parts of lab to generate the number on the 7-segment display.
+
 
 ```const int potpin = 0;
 const int WAIT = 1000; // 1 second delay
