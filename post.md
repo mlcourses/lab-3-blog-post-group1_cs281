@@ -83,7 +83,7 @@ We can now start putting everything together!
 
 <img width="452" alt="Screenshot 2024-02-22 at 7 01 41 PM" src="https://github.com/mlcourses/lab-3-blog-post-group1_cs281/assets/112486168/fda41730-862d-4892-8134-b559b6865d24">
 
-The photo above shows how we will connect all the parts of lab to generate the number on the 7-segment display.
+The photo above shows how we will connect all the parts of lab to generate the number on the 7-segment display. The code below is what we will put into the Arduino. We need to  connect V to the Arduino A0. The ```potpin ``` varible 
 
 
 ```const int potpin = 0;
